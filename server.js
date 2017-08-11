@@ -14,3 +14,11 @@ app.use(express.static('public'));
 app.get('/', (req, res)=> {
   res.sendFile(path.join(__dirname, './index.html'));
 });
+
+app.get('/users', (req, res) =>{
+	// Comment out this line:
+  //res.send('respond with a resource');
+
+  // And insert something like this instead:
+  res.send('Welcome to React');
+});

@@ -3,6 +3,8 @@
 */
 
 import RX = require('reactxp');
+import { Component, Styles, Text, View } from "reactxp";
+import axios from 'axios'
 
 const styles = {
     container: RX.Styles.createViewStyle({
@@ -31,12 +33,23 @@ const styles = {
     })
 };
 
-class App extends RX.Component<null, null> {
+interface MyProps {
+}
+
+interface MyState {
+    message: String;
+}
+
+class App extends RX.Component<MyProps, MyState> {
     private _translationValue: RX.Animated.Value;
     private _animatedStyle: RX.Types.AnimatedTextStyleRuleSet;
-
-    constructor() {
-        super();
+ 
+    constructor(props: MyProps ) {
+    super(props);
+    this.state = { 
+        message: 'Hi'
+     };
+    
 
         this._translationValue = new RX.Animated.Value(-100);
         this._animatedStyle = RX.Styles.createAnimatedTextStyle({
@@ -48,6 +61,20 @@ class App extends RX.Component<null, null> {
         });
     }
 
+     componentDidMount() {
+        axios.get(`/users`)
+        .then(json => this.setState({ message: json.data }));
+    }
+
+    render() {
+        return (
+        <div>
+        <h2>{this.state.message}</h2>
+        </div>
+        );
+    } 
+
+    /*
     componentDidMount() {
         let animation = RX.Animated.timing(this._translationValue, {
               toValue: 0,
@@ -77,6 +104,7 @@ class App extends RX.Component<null, null> {
             </RX.View>
         );
     }
+    */
 }
 
 export = App;
