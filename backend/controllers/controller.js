@@ -45,7 +45,7 @@ exports.facebookAuth = function(req, res, next) {
           res.json({token: tokenForUser(user)});
         });
       } else {
-        res.sendStatus(404);
+          res.json({token: tokenForUser(user)});
       }
     });
   }).catch(function(error) {

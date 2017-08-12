@@ -61,6 +61,13 @@ class App extends RX.Component<MyProps, MyState> {
     
     }
 
+    public _handleURL = function(event: { url: string }) {
+        const location = window.location.href;
+        const facebookToken = location.split('#')[1].split('=')[1].split('&')[0];
+        return  axios.post('http://localhost:8000/v1/facebook_auth', {token: facebookToken})
+        .then((response) => { const token = response.data.token; });
+     }
+
     public _facebookLogin() {
     return RX.Linking.openUrl([
       'https://graph.facebook.com/oauth/authorize',
@@ -72,16 +79,10 @@ class App extends RX.Component<MyProps, MyState> {
   }
 
     componentDidMount() {
-     const _handleURL = function(event: { url: string }) {
-       console.log(window.location.href.split('#')[1].split('=')[1].split('&')[0]);
-        //console.log(event.url.split('#')[1].split('=')[1].split('&')[0]);
-        const location = window.location.href;
-    const facebookToken = location.split('#')[1].split('=')[1].split('&')[0];
-    return  axios.post('http://localhost:8000/v1/facebook_auth', {token: facebookToken})
-      .then((response) => { const token = response.data.token; });
-    }
-      window.addEventListener('url', _handleURL.bind(this));
-      RX.Linking.getInitialUrl().then(url => _handleURL({url}));
+        RX.Linking.getInitialUrl()
+        .then(function(url: string) {
+            this._handleURL({ url });
+         })
     }
 
   render() {
