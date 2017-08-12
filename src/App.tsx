@@ -3,7 +3,7 @@
 */
 
 import RX = require('reactxp');
-import { Component, Styles, Text, View, Linking, Button} from "reactxp";
+import { Component, Styles, Text, View, Linking, Button, Link} from "reactxp";
 import axios from 'axios';
 import SyncTasks = require('synctasks');
 
@@ -61,38 +61,53 @@ class App extends RX.Component<MyProps, MyState> {
     
     }
 
-    public _handleURL = function(event: { url: string }) {
-        const location = window.location.href;
-        const facebookToken = location.split('#')[1].split('=')[1].split('&')[0];
-        return  axios.post('http://localhost:8000/v1/facebook_auth', {token: facebookToken})
-        .then((response) => { const token = response.data.token; });
-     }
-
     public _facebookLogin() {
-    return RX.Linking.openUrl([
+    //Opens facebook URL, but in a new tab
+    /*    RX.Linking.openUrl([
       'https://graph.facebook.com/oauth/authorize',
       '?response_type=token',
       '&scope=email',
       '&client_id='+'1597853887207086',
       '&redirect_uri=http://localhost:8000/'
     ].join(''));
+    */
+
+    //Opens facebook URL in same tab
+        window.open(([
+        'https://graph.facebook.com/oauth/authorize',
+        '?response_type=token',
+        '&scope=email',
+        '&client_id='+'1597853887207086',
+        '&redirect_uri=http://localhost:8000/'
+        ].join('')), "_self"); 
   }
 
     componentDidMount() {
+        const _handleURL =function(event: { url: string }) {
+        const location = window.location.href;
+        const facebookToken = location.split('#')[1].split('=')[1].split('&')[0];
+
+        return  axios.post('http://localhost:8000/v1/facebook_auth', {token: facebookToken})
+        .then((response) => { 
+            const token = response.data.token; 
+        });
+     }
+
+       // window.addEventListener('url', _handleURL.bind(this));
         RX.Linking.getInitialUrl()
         .then(function(url: string) {
-            this._handleURL({ url });
+            _handleURL({url});
          })
     }
 
   render() {
     return (
       <View style={styles.container}>
-        <Button onPress={this._facebookLogin}>
+        <Link onPress={this._facebookLogin}>
           <Text style={styles.welcome}>
             Facebook Login!
           </Text>
-        </Button>
+        </Link>
       </View>
     );
   }

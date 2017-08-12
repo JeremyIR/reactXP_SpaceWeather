@@ -1,29 +1,37 @@
-'use strict';
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const AuthController = require('./controllers/controller');
 
-var loopback = require('loopback');
-var boot = require('loopback-boot');
+const app = express();
+const router = express.Router();
+mongoose.connect('mongodb://localhost:27017/test')
+const port = 8000;
 
-var app = module.exports = loopback();
+const protectedAction = function(req, res) {
+  res.send("Here's some protected information!");
+}
 
-app.start = function() {
-  // start the web server
-  return app.listen(function() {
-    app.emit('started');
-    var baseUrl = app.get('url').replace(/\/$/, '');
-    console.log('Web server listening at: %s', baseUrl);
-    if (app.get('loopback-component-explorer')) {
-      var explorerPath = app.get('loopback-component-explorer').mountPath;
-      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
-    }
-  });
-};
+// serve the index page
+router.route('/')
+  .get((req, res)=> { res.sendFile(path.join(__dirname, './index.html')); });
 
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err;
+router.route('/users')
+  .get((req, res) =>{  res.send('Welcome to React'); });
 
-  // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
-});
+router.route('/facebook_auth')
+  .post(AuthController.facebookAuth);
+
+router.route('/protected')
+  .get([AuthController.requireAuth, protectedAction]);
+
+app.use(express.static('../public'));
+app.use(morgan('combined'));
+app.use(bodyParser.json({type:'*/*'}));
+app.use('/v1', router);
+
+app.listen(port, ()=> {
+  console.log('listening on port:', port);
+})
