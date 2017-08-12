@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "web-watch": "webpack --progress --colors --watch",
+    "rn-start": "tsc --watch",
     "start": "node .",
     "posttest": "npm run lint && nsp check"
   },
@@ -40,6 +41,7 @@
     "react-native": "0.42.3",
     "react-native-windows": "^0.33.0",
     "reactxp": "0.42.0-rc.1",
+    "reactxp-imagesvg": "^0.2.1",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^2.0.0"
   },

@@ -6,8 +6,11 @@ import RX = require('reactxp');
 import { Component, Styles, Text, View, Linking, Button, Link} from "reactxp";
 import axios from 'axios';
 import SyncTasks = require('synctasks');
+import { createIconStyle } from './icon_base';
+import { FacebookIcon } from "./facebook";
+import { styles } from './styles';
 
-const styles = {
+const newStyles = {
     container: RX.Styles.createViewStyle({
         flex: 1,
         justifyContent: 'center',
@@ -18,7 +21,8 @@ const styles = {
         fontSize: 48,
         fontWeight: 'bold',
         marginBottom: 28
-    }),
+    }, 
+),
     welcome: RX.Styles.createTextStyle({
         fontSize: 32,
         marginBottom: 12
@@ -102,12 +106,12 @@ class App extends RX.Component<MyProps, MyState> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Link onPress={this._facebookLogin}>
-          <Text style={styles.welcome}>
-            Facebook Login!
-          </Text>
-        </Link>
+      <View style={newStyles.container}>
+          <h1>FDA Recall</h1>
+          <Button style={styles.facebook_button} onPress={this._facebookLogin}>
+                <FacebookIcon style={styles.facebook_icon} /> 
+                <RX.Text style={styles.facebook_button_text}>Continue with Facebook</RX.Text>
+            </Button>
       </View>
     );
   }
