@@ -3,8 +3,8 @@
 */
 
 import RX = require('reactxp');
-import { Component, Styles, Text, View } from "reactxp";
-import axios from 'axios'
+import { Component, Styles, Text, View, Linking, Button} from "reactxp";
+import axios from 'axios';
 
 const styles = {
     container: RX.Styles.createViewStyle({
@@ -49,9 +49,7 @@ class App extends RX.Component<MyProps, MyState> {
     this.state = { 
         message: 'Hi'
      };
-    
-
-        this._translationValue = new RX.Animated.Value(-100);
+    this._translationValue = new RX.Animated.Value(-100);
         this._animatedStyle = RX.Styles.createAnimatedTextStyle({
             transform: [
                 {
@@ -59,10 +57,50 @@ class App extends RX.Component<MyProps, MyState> {
                 }
             ]
         });
+    
     }
+    
+    public _handleURL(event: { url: string }) {
+    //console.log(event.url);
+    // Bit of a hack to get the token from this URL... 
+    // implement yours in a safer way
+     //console.log(event.url.split('#')[1].split('=')[1].split('&')[0]);
 
+     const facebookToken = event.url.split('#')[1].split('=')[1].split('&')[0];
+      return axios.post('http://localhost:8000/v1/facebook_auth', {token: facebookToken})
+      .then((response) => {
+        const token = response.data.token;
+     });
+      }
+
+    public _facebookLogin() {
+    return RX.Linking.openUrl([
+      'https://graph.facebook.com/oauth/authorize',
+      '?response_type=token',
+      '&scope=email',
+      '&client_id='+'1597853887207086',
+      '&redirect_uri=http://localhost:8000/'
+    ].join(''));
+  }
+
+    componentDidMount() {
+    window.addEventListener('url', this._handleURL.bind(this));
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Button onPress={this._facebookLogin}>
+          <Text style={styles.welcome}>
+            Facebook Login!
+          </Text>
+        </Button>
+      </View>
+    );
+  }
+    
+  /*
      componentDidMount() {
-        axios.get(`/users`)
+        axios.get(`/v1/users`)
         .then(json => this.setState({ message: json.data }));
     }
 
@@ -73,7 +111,7 @@ class App extends RX.Component<MyProps, MyState> {
         </div>
         );
     } 
-
+*/
     /*
     componentDidMount() {
         let animation = RX.Animated.timing(this._translationValue, {
