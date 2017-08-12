@@ -5,6 +5,7 @@
 import RX = require('reactxp');
 import { Component, Styles, Text, View, Linking, Button} from "reactxp";
 import axios from 'axios';
+import SyncTasks = require('synctasks');
 
 const styles = {
     container: RX.Styles.createViewStyle({
@@ -59,19 +60,6 @@ class App extends RX.Component<MyProps, MyState> {
         });
     
     }
-    
-    public _handleURL(event: { url: string }) {
-    //console.log(event.url);
-    // Bit of a hack to get the token from this URL... 
-    // implement yours in a safer way
-     //console.log(event.url.split('#')[1].split('=')[1].split('&')[0]);
-
-     const facebookToken = event.url.split('#')[1].split('=')[1].split('&')[0];
-      return axios.post('http://localhost:8000/v1/facebook_auth', {token: facebookToken})
-      .then((response) => {
-        const token = response.data.token;
-     });
-      }
 
     public _facebookLogin() {
     return RX.Linking.openUrl([
@@ -84,8 +72,18 @@ class App extends RX.Component<MyProps, MyState> {
   }
 
     componentDidMount() {
-    window.addEventListener('url', this._handleURL.bind(this));
-  }
+     const _handleURL = function(event: { url: string }) {
+       console.log(window.location.href.split('#')[1].split('=')[1].split('&')[0]);
+        //console.log(event.url.split('#')[1].split('=')[1].split('&')[0]);
+        const location = window.location.href;
+    const facebookToken = location.split('#')[1].split('=')[1].split('&')[0];
+    return  axios.post('http://localhost:8000/v1/facebook_auth', {token: facebookToken})
+      .then((response) => { const token = response.data.token; });
+    }
+      window.addEventListener('url', _handleURL.bind(this));
+      RX.Linking.getInitialUrl().then(url => _handleURL({url}));
+    }
+
   render() {
     return (
       <View style={styles.container}>
@@ -97,52 +95,6 @@ class App extends RX.Component<MyProps, MyState> {
       </View>
     );
   }
-    
-  /*
-     componentDidMount() {
-        axios.get(`/v1/users`)
-        .then(json => this.setState({ message: json.data }));
-    }
-
-    render() {
-        return (
-        <div>
-        <h2>{this.state.message}</h2>
-        </div>
-        );
-    } 
-*/
-    /*
-    componentDidMount() {
-        let animation = RX.Animated.timing(this._translationValue, {
-              toValue: 0,
-              easing: RX.Animated.Easing.OutBack(),
-              duration: 500
-            }
-        );
-
-        animation.start();
-    }
-
-    render(): JSX.Element | null {
-        return (
-            <RX.View style={ styles.container }>
-                <RX.Animated.Text style={ [styles.helloWorld, this._animatedStyle] }>
-                    Hello World
-                </RX.Animated.Text>
-                <RX.Text style={ styles.welcome }>
-                    Welcome to ReactXP
-                </RX.Text>
-                <RX.Text style={ styles.instructions }>
-                    Edit App.tsx to get started
-                </RX.Text>
-                <RX.Link style={ styles.docLink } url={ 'https://microsoft.github.io/reactxp/docs' }>
-                    View ReactXP documentation
-                </RX.Link>
-            </RX.View>
-        );
-    }
-    */
 }
 
 export = App;
