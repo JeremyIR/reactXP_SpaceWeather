@@ -1,5 +1,8 @@
 import RX = require('reactxp');
 import App = require('./App');
+import Login = require('./login');
+
+import { AppRegistry } from 'react-native';
 
 // For hot reload settings
 declare var module: { hot: any };
