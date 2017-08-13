@@ -13,6 +13,7 @@
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
+    "@types/whatwg-fetch": "0.0.33",
     "@types/xml2js": "^0.4.0",
     "axios": "^0.16.1",
     "body-parser": "^1.17.2",
@@ -44,7 +45,9 @@
     "reactxp": "0.42.0-rc.1",
     "reactxp-imagesvg": "^0.2.1",
     "serve-favicon": "^2.0.1",
+    "simplerestclients": "^0.0.13",
     "strong-error-handler": "^2.0.0",
+    "whatwg-fetch": "^2.0.3",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {

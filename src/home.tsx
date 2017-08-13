@@ -4,7 +4,9 @@
 
 import RX = require('reactxp');
 import axios from 'axios';
+import "whatwg-fetch"; 
 import xml2js = require('xml2js');
+import { GenericRestClient } from 'simplerestclients';
 
 const styles = {
     container: RX.Styles.createViewStyle({
@@ -29,12 +31,16 @@ const styles = {
     }),
     docLink: RX.Styles.createLinkStyle({
         fontSize: 16,
-        color: 'blue'
+        color: 'green'
     }),
     fluxImage: RX.Styles.createImageStyle({
         width:500,
         height:500
     }),
+    scroll: RX.Styles.createScrollViewStyle({
+        alignSelf: 'stretch',
+        backgroundColor: '#f5fcff'
+    })
 };
 
 interface HomeProps {
@@ -42,7 +48,7 @@ interface HomeProps {
 }
 
 interface ImageState {
-    xmlData: any[]
+    xmlData: any
 }
 
 class Home extends RX.Component<HomeProps, ImageState> {
@@ -80,42 +86,39 @@ class Home extends RX.Component<HomeProps, ImageState> {
         );
         animation.start();
         */
-        axios.get('https://www.sciencedaily.com/rss/space_time.xml')
-        .then((res) => {
-            let parseString = xml2js.parseString;
-            parseString = (res.data, ((result: any) => {
-            const news = result.rss.channel[0].item;
-                this.setState({
-                    xmlData: news
-                });
-            }))
-         })
-        }
-
+        
+       axios.get('/v1/news').then((res) => {
+           this.setState({ xmlData: res.data });
+           console.log(this.state.xmlData)
+        })
+    
+ }
       private _onPressBack = () => {
         this.props.onNavigateBack();
     }
+ /* 
 
+*/
 
     render(): JSX.Element | null {
         return (
                
-             <RX.View style={ styles.container }>
-                    {this.state.xmlData.map((obj) => {
-                        const newsTitle = obj.title.toString().substring(0,35) + "..."
+             <RX.ScrollView style={ styles.scroll }>
+                 {this.state.xmlData.map((obj: any) => {
+                    const newsTitle = obj.title.toString().substring(0,35) + "...";
+                    const newsDesc = obj.description.toString();
                     return (
-                        <RX.View style={ styles.container } key={obj.title}>
-                            <RX.Link style={ styles.docLink } url={obj.link}></RX.Link>
+                        <RX.View>
+                         <RX.View key={obj.title}>
+                            <RX.Link style={ styles.docLink } url={obj.link}>{newsTitle}</RX.Link>
+                        </RX.View>
+                        <RX.View key={obj.description}>
+                            <RX.Text style={ styles.instructions }>{newsDesc}</RX.Text>
+                        </RX.View>
                         </RX.View>
                     )
                     })}
-                     <RX.Animated.Text style={ [styles.helloWorld, this._animatedStyle] }>
-                    Space Weather!
-                </RX.Animated.Text>
-                <RX.Text style={ styles.welcome }>
-                    Overview
-                </RX.Text>
-            </RX.View>
+            </RX.ScrollView>
                 //<RX.Image style={styles.fluxImage} source={this.state.image} />
         );
     }
