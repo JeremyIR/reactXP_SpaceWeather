@@ -13,6 +13,7 @@
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
+    "@types/xml2js": "^0.4.0",
     "axios": "^0.16.1",
     "body-parser": "^1.17.2",
     "compression": "^1.0.3",
@@ -43,7 +44,8 @@
     "reactxp": "0.42.0-rc.1",
     "reactxp-imagesvg": "^0.2.1",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^2.0.0"
+    "strong-error-handler": "^2.0.0",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

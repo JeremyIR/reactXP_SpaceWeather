@@ -4,9 +4,13 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const AuthController = require('./controllers/controller');
+const cors = require('cors')
+ 
+
 
 const app = express();
 const router = express.Router();
+
 mongoose.connect('mongodb://localhost:27017/test')
 const port = 8000;
 
@@ -27,10 +31,17 @@ router.route('/facebook_auth')
 router.route('/protected')
   .get([AuthController.requireAuth, protectedAction]);
 
+app.use(cors())
+
 app.use(express.static('../public'));
 app.use(morgan('combined'));
 app.use(bodyParser.json({type:'*/*'}));
 app.use('/v1', router);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.listen(port, ()=> {
   console.log('listening on port:', port);
