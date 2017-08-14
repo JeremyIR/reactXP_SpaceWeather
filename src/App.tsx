@@ -1,7 +1,8 @@
 import RX = require('reactxp');
 
 import MainPanel = require('./login');
-import SecondPanel = require('./home');
+import SecondPanel = require('./forcast');
+import thirdPanel = require('./home');
 
 enum NavigationRouteId {
     MainPanel,

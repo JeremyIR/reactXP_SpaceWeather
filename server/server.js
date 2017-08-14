@@ -35,6 +35,18 @@ router.route('/users')
     })
   })
   
+   router.route('/forcast')
+  .get((req, res) => {
+    axios({
+      method:'get',
+      url:'http://services.swpc.noaa.gov/text/3-day-forecast.txt',
+      responseType:'text'
+    })  
+      .then(function(response) {
+       res.send(JSON.stringify(response.data))
+      });
+    })
+
 router.route('/facebook_auth')
   .post(AuthController.facebookAuth);
 
