@@ -1,33 +1,20 @@
-/*
-* This file demonstrates a basic ReactXP app.
-*/
-
 import RX = require('reactxp');
 import axios from 'axios';
-import "whatwg-fetch"; 
-import xml2js = require('xml2js');
-import { GenericRestClient } from 'simplerestclients';
+import * as myStyles from './styles'
 
 const styles = {
     container: RX.Styles.createViewStyle({
-        flex: 1,
-        justifyContent: 'center',
+        flex: 0,
         alignItems: 'center',
+        alignSelf: 'center',
         backgroundColor: '#f5fcff'
     }),
-    helloWorld: RX.Styles.createTextStyle({
-        fontSize: 48,
-        fontWeight: 'bold',
-        marginBottom: 28
-    }),
     welcome: RX.Styles.createTextStyle({
-        fontSize: 32,
-        marginBottom: 12
-    }),
-    instructions: RX.Styles.createTextStyle({
-        fontSize: 16,
-        color: '#aaa',
-        marginBottom: 40
+        fontSize: 12,
+        marginBottom: 12,
+        marginRight: 10,
+        marginLeft: 90,
+        alignSelf: 'center'
     }),
     docLink: RX.Styles.createLinkStyle({
         fontSize: 16,
@@ -38,8 +25,9 @@ const styles = {
         height:500
     }),
     scroll: RX.Styles.createScrollViewStyle({
-        alignSelf: 'stretch',
-        backgroundColor: '#f5fcff'
+        alignSelf: 'center',
+        backgroundColor: '#f5fcff',
+        width: 1200
     })
 };
 
@@ -53,8 +41,6 @@ interface ImageState {
 
 class Home extends RX.Component<HomeProps, ImageState> {
     private _navigator: RX.Navigator;
-    private _translationValue: RX.Animated.Value;
-    private _animatedStyle: RX.Types.AnimatedTextStyleRuleSet;
 
     constructor() {
         super();
@@ -66,58 +52,39 @@ class Home extends RX.Component<HomeProps, ImageState> {
          this.state = {
          xmlData: []
         } 
-
-        this._translationValue = new RX.Animated.Value(-100);
-        this._animatedStyle = RX.Styles.createAnimatedTextStyle({
-            transform: [
-                {
-                    translateY: this._translationValue
-                }
-            ]
-        });
     }
 
     componentDidMount() {
-       /* let animation = RX.Animated.timing(this._translationValue, {
-              toValue: 0,
-              easing: RX.Animated.Easing.OutBack(),
-              duration: 500
-            }
-        );
-        animation.start();
-        */
-        
        axios.get('/v1/news').then((res) => {
            this.setState({ xmlData: res.data });
-           console.log(this.state.xmlData)
         })
-    
  }
+
       private _onPressBack = () => {
         this.props.onNavigateBack();
     }
- /* 
-
-*/
 
     render(): JSX.Element | null {
         return (
-               
              <RX.ScrollView style={ styles.scroll }>
                  {this.state.xmlData.map((obj: any) => {
-                    const newsTitle = obj.title.toString().substring(0,35) + "...";
+                    const newsTitle = obj.title.toString();
                     const newsDesc = obj.description.toString();
                     return (
-                        <RX.View>
-                         <RX.View key={obj.title}>
-                            <RX.Link style={ styles.docLink } url={obj.link}>{newsTitle}</RX.Link>
+                        <RX.View style={ styles.container }>
+                         <RX.View style={ myStyles.styles.heading } key={obj.title}>
+                            <RX.Link style={ styles.docLink } url={obj.link}>
+                                {newsTitle}
+                            </RX.Link>
                         </RX.View>
-                        <RX.View key={obj.description}>
-                            <RX.Text style={ styles.instructions }>{newsDesc}</RX.Text>
+                        <RX.View style={ myStyles.styles.paragraph } key={obj.description}>
+                            <RX.Text style={ styles.welcome }>
+                                {newsDesc}
+                            </RX.Text>
                         </RX.View>
                         </RX.View>
                     )
-                    })}
+                })}
             </RX.ScrollView>
                 //<RX.Image style={styles.fluxImage} source={this.state.image} />
         );

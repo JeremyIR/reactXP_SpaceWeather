@@ -289,7 +289,7 @@ export const pageStyles = {
     ],
 
     paragraph: RX.Styles.createViewStyle({
-        flexDirection: 'row',
+        flexDirection: 'column',
         flexWrap: 'wrap',
         marginTop: pageSizes.marginTop_paragraph,
         marginBottom: pageSizes.marginBottom_paragraph,
