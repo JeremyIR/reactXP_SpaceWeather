@@ -33,6 +33,7 @@ const styles = {
 
 interface HomeProps {
   onNavigateBack: () => void;
+  onShowFourthPanel: () => void;
 }
 
 interface ImageState {
@@ -60,9 +61,20 @@ class Forcast extends RX.Component<HomeProps, ImageState> {
     this.props.onNavigateBack();
   };
 
+  private _onPressViewNews = () => {
+      this.props.onShowFourthPanel();
+  }
+
+
   render(): JSX.Element | null {
     return (
+ 
       <RX.ScrollView style={styles.scroll}>
+             <RX.Button onPress={ this._onPressViewNews }>                    
+              <RX.Text>
+                  News
+              </RX.Text>
+          </RX.Button>
         <RX.Text style={styles.docLink}>
           {this.state.image}
         </RX.Text>

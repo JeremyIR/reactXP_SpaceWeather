@@ -50,7 +50,14 @@ class App extends RX.Component<{}, null> {
         return <MainPanel onPressNavigate={this._onPressNavigate} />;
 
       case NavigationRouteId.SecondPanel:
-        return <SecondPanel onNavigateBack={this._onPressBack} />;
+        return <SecondPanel onNavigateBack={this._onPressBack} onShowThirdPanel={ this._onPressViewForcast } />;
+        
+      case NavigationRouteId.ThirdPanel:
+        return <ThirdPanel onNavigateBack={this._onPressBack} onShowFourthPanel={ this._onPressViewNews }/>;
+
+      case NavigationRouteId.FourthPanel:
+        return <FourthPanel onNavigateBack={this._onPressBack} />;
+
     }
 
     return null;
@@ -65,6 +72,26 @@ class App extends RX.Component<{}, null> {
       }
     });
   };
+
+   private _onPressViewForcast = () => {
+        this._navigator.push({
+            routeId: NavigationRouteId.ThirdPanel,
+            sceneConfigType: RX.Types.NavigatorSceneConfigType.FloatFromRight,
+            customSceneConfig: {
+                hideShadow: true
+            }
+        });
+    }
+  
+   private _onPressViewNews = () => {
+        this._navigator.push({
+            routeId: NavigationRouteId.FourthPanel,
+            sceneConfigType: RX.Types.NavigatorSceneConfigType.FloatFromRight,
+            customSceneConfig: {
+                hideShadow: true
+            }
+        });
+    }
 
   private _onPressBack = () => {
     this._navigator.pop();

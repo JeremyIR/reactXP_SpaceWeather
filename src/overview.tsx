@@ -33,6 +33,7 @@ const styles = {
 
 interface HomeProps {
   onNavigateBack: () => void;
+  onShowThirdPanel: () => void;
 }
 
 interface ImageState {
@@ -56,10 +57,19 @@ class Overview extends RX.Component<HomeProps, ImageState> {
     this.props.onNavigateBack();
   };
 
+  private _onPressViewForcast = () => {
+        this.props.onShowThirdPanel();
+    }
+
   render(): JSX.Element | null {
     return (
       <RX.View style={styles.container}>
         <RX.Image style={styles.fluxImage} source={this.state.image} />
+          <RX.Button onPress={ this._onPressViewForcast }>                    
+              <RX.Text>
+                  Forcast
+              </RX.Text>
+          </RX.Button>
       </RX.View>
     );
   }
