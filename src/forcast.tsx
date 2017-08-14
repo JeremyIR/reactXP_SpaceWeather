@@ -13,7 +13,7 @@ const styles = {
         fontSize: 12,
         marginBottom: 12,
         marginRight: 10,
-        marginLeft: 90,
+        marginLeft: 20,
         alignSelf: 'center'
     }),
     docLink: RX.Styles.createLinkStyle({
@@ -63,11 +63,11 @@ class Forcast extends RX.Component<HomeProps, ImageState> {
 
     render(): JSX.Element | null {
         return (
-                <RX.View style={ styles.container }>
+                <RX.ScrollView style={ styles.scroll }>
                     <RX.Text style={styles.docLink}>
                         {this.state.image}
                 </RX.Text>
-                </RX.View>
+                </RX.ScrollView>
         );
     }
 }

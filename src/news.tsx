@@ -45,10 +45,6 @@ class Home extends RX.Component<HomeProps, ImageState> {
     constructor() {
         super();
 
-       /*  this.state = {
-         image: 'http://services.swpc.noaa.gov/images/swx-overview-large.gif'
-        } */
-
          this.state = {
          xmlData: []
         } 
@@ -86,7 +82,6 @@ class Home extends RX.Component<HomeProps, ImageState> {
                     )
                 })}
             </RX.ScrollView>
-                //<RX.Image style={styles.fluxImage} source={this.state.image} />
         );
     }
 }

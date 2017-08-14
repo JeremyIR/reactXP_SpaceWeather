@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const  xml2js = require('xml2js');
+const xml2js = require('xml2js');
 const AuthController = require('./controllers/controller');
 
 const app = express();
@@ -23,7 +23,7 @@ router.route('/')
 router.route('/users')
   .get((req, res) =>{  res.send('Welcome to React'); });
 
-  router.route('/news')
+router.route('/news')
   .get((req, res) => {
     axios.get('https://www.sciencedaily.com/rss/space_time.xml?cors=true')
       .then((response) => {
@@ -35,7 +35,7 @@ router.route('/users')
     })
   })
   
-   router.route('/forcast')
+router.route('/forcast')
   .get((req, res) => {
     axios({
       method:'get',

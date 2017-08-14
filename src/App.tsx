@@ -1,12 +1,15 @@
 import RX = require('reactxp');
 
 import MainPanel = require('./login');
-import SecondPanel = require('./forcast');
-import thirdPanel = require('./home');
+import SecondPanel = require('./overview');
+import ThirdPanel = require('./forcast');
+import FourthPanel = require('./news');
 
 enum NavigationRouteId {
     MainPanel,
-    SecondPanel
+    SecondPanel,
+    ThirdPanel,
+    FourthPanel
 }
 
 const styles = {
