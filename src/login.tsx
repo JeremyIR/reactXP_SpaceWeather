@@ -14,8 +14,11 @@ const newStyles = {
   container: RX.Styles.createViewStyle({
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: 'center',
     backgroundColor: "#f5fcff"
+  }),
+   image: RX.Styles.createImageStyle({
+    flex: 1
   }),
   helloWorld: RX.Styles.createTextStyle({
     fontSize: 48,
@@ -41,36 +44,25 @@ interface LoginProps {
   onPressNavigate: () => void;
 }
 
-class Login extends RX.Component<LoginProps, null> {
-  private _translationValue: RX.Animated.Value;
-  private _animatedStyle: RX.Types.AnimatedTextStyleRuleSet;
+interface LoginState {
+  image: any
+}
 
+
+class Login extends RX.Component<LoginProps, LoginState> {
   constructor(props: LoginProps) {
     super(props);
+
+    this.state = {
+        image: 'https://i.kinja-img.com/gawker-media/image/upload/s--e2NbN6DU--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/ncdfbvnn3xv0i558vr92.jpg'
+    }
   }
 
   public _facebookLogin() {
-    //Opens facebook URL, but in a new tab
-    /*    RX.Linking.openUrl([
-      'https://graph.facebook.com/oauth/authorize',
-      '?response_type=token',
-      '&scope=email',
-      '&client_id='+'1597853887207086',
-      '&redirect_uri=http://localhost:8000/'
-    ].join(''));
-    */
-
+    const url = ["https://graph.facebook.com/oauth/authorize", "?response_type=token", "&scope=email", "&client_id=" + "1597853887207086", "&redirect_uri=http://localhost:8000/"].join("")
+    
     //Opens facebook URL in same tab
-    window.open(
-      [
-        "https://graph.facebook.com/oauth/authorize",
-        "?response_type=token",
-        "&scope=email",
-        "&client_id=" + "1597853887207086",
-        "&redirect_uri=http://localhost:8000/"
-      ].join(""),
-      "_self"
-    );
+    window.open(url, "_self");
   }
 
   componentDidMount() {

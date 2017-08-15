@@ -4,10 +4,14 @@ import * as myStyles from "./styles";
 
 const styles = {
   container: RX.Styles.createViewStyle({
-    flex: 0,
-    alignItems: "center",
-    alignSelf: "center",
-    backgroundColor: "#f5fcff"
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f5fcff'
+  }),
+     background: RX.Styles.createImageStyle({
+      flex: 1,
+      resizeMode: 'stretch'
   }),
   welcome: RX.Styles.createTextStyle({
     fontSize: 12,
@@ -31,23 +35,26 @@ const styles = {
   })
 };
 
-interface HomeProps {
+interface OverViewProps {
   onNavigateBack: () => void;
-  onShowThirdPanel: () => void;
+  onViewForcast: () => void;
+  onViewNews: () => void;
 }
 
-interface ImageState {
+interface OverViewState {
   image: any;
+  bg: any;
 }
 
-class Overview extends RX.Component<HomeProps, ImageState> {
+class Overview extends RX.Component<OverViewProps, OverViewState> {
   private _navigator: RX.Navigator;
 
   constructor() {
     super();
 
     this.state = {
-      image: "http://services.swpc.noaa.gov/images/swx-overview-large.gif"
+      image: "http://services.swpc.noaa.gov/images/swx-overview-large.gif",
+      bg: 'https://i.kinja-img.com/gawker-media/image/upload/s--e2NbN6DU--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/ncdfbvnn3xv0i558vr92.jpg'
     };
   }
 
@@ -58,18 +65,28 @@ class Overview extends RX.Component<HomeProps, ImageState> {
   };
 
   private _onPressViewForcast = () => {
-        this.props.onShowThirdPanel();
-    }
+      this.props.onViewForcast();
+  }
+
+  private _onPressViewNews = () => {
+      this.props.onViewNews();
+  }
+
 
   render(): JSX.Element | null {
     return (
-      <RX.View style={styles.container}>
-        <RX.Image style={styles.fluxImage} source={this.state.image} />
-          <RX.Button onPress={ this._onPressViewForcast }>                    
-              <RX.Text>
+        <RX.View style={styles.container}>
+          <RX.Button style={myStyles.styles.action_button} onPress={ this._onPressViewForcast }>                    
+              <RX.Text style={myStyles.styles.action_button_text}>
                   Forcast
               </RX.Text>
           </RX.Button>
+          <RX.Button style={myStyles.styles.action_button} onPress={ this._onPressViewNews }>                    
+              <RX.Text style={myStyles.styles.action_button_text}>
+                  Forcast
+              </RX.Text>
+          </RX.Button>
+        <RX.Image style={styles.fluxImage} source={this.state.image} />
       </RX.View>
     );
   }

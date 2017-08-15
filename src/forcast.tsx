@@ -31,16 +31,16 @@ const styles = {
   })
 };
 
-interface HomeProps {
-  onNavigateBack: () => void;
-  onShowFourthPanel: () => void;
+interface ForcastProps {
+  onViewOverview: () => void;
+  onViewNews: () => void;
 }
 
-interface ImageState {
+interface ForcastState {
   image: any;
 }
 
-class Forcast extends RX.Component<HomeProps, ImageState> {
+class Forcast extends RX.Component<ForcastProps, ForcastState> {
   private _navigator: RX.Navigator;
 
   constructor() {
@@ -57,12 +57,12 @@ class Forcast extends RX.Component<HomeProps, ImageState> {
     });
   }
 
-  private _onPressBack = () => {
-    this.props.onNavigateBack();
-  };
+private _onPressViewOverview = () => {
+    this.props.onViewOverview();
+  }
 
   private _onPressViewNews = () => {
-      this.props.onShowFourthPanel();
+      this.props.onViewNews();
   }
 
 
@@ -70,6 +70,11 @@ class Forcast extends RX.Component<HomeProps, ImageState> {
     return (
  
       <RX.ScrollView style={styles.scroll}>
+          <RX.Button onPress={ this._onPressViewOverview }>                    
+              <RX.Text>
+                  Overview
+              </RX.Text>
+          </RX.Button>
              <RX.Button onPress={ this._onPressViewNews }>                    
               <RX.Text>
                   News

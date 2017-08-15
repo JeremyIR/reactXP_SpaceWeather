@@ -31,15 +31,16 @@ const styles = {
   })
 };
 
-interface HomeProps {
-  onNavigateBack: () => void;
+interface NewsProps {
+  onViewForcast: () => void;
+  onViewOverview: () => void;
 }
 
-interface ImageState {
+interface NewsState {
   xmlData: any;
 }
 
-class Home extends RX.Component<HomeProps, ImageState> {
+class News extends RX.Component<NewsProps, NewsState> {
   private _navigator: RX.Navigator;
 
   constructor() {
@@ -56,9 +57,13 @@ class Home extends RX.Component<HomeProps, ImageState> {
     });
   }
 
-  private _onPressBack = () => {
-    this.props.onNavigateBack();
+  private _onPressViewForcast = () => {
+    this.props.onViewForcast();
   };
+
+   private _onPressViewOverview = () => {
+    this.props.onViewOverview();
+  }
 
   render(): JSX.Element | null {
     return (
@@ -68,6 +73,16 @@ class Home extends RX.Component<HomeProps, ImageState> {
           const newsDesc = obj.description.toString();
           return (
             <RX.View style={styles.container}>
+              <RX.Button onPress={ this._onPressViewOverview }>                    
+              <RX.Text>
+                  Overview
+              </RX.Text>
+          </RX.Button>
+             <RX.Button onPress={ this._onPressViewForcast }>                    
+              <RX.Text>
+                  News
+              </RX.Text>
+          </RX.Button>
               <RX.View style={myStyles.styles.heading} key={obj.title}>
                 <RX.Link style={styles.docLink} url={obj.link}>
                   {newsTitle}
@@ -86,4 +101,4 @@ class Home extends RX.Component<HomeProps, ImageState> {
   }
 }
 
-export = Home;
+export = News;
