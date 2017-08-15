@@ -36,9 +36,8 @@ const styles = {
 };
 
 interface OverViewProps {
-  onNavigateBack: () => void;
+  //onNavigateBack: () => void;
   onViewForcast: () => void;
-  onViewNews: () => void;
 }
 
 interface OverViewState {
@@ -60,28 +59,19 @@ class Overview extends RX.Component<OverViewProps, OverViewState> {
 
   componentDidMount() {}
 
+  /*
   private _onPressBack = () => {
     this.props.onNavigateBack();
-  };
+  };*/
 
   private _onPressViewForcast = () => {
       this.props.onViewForcast();
   }
 
-  private _onPressViewNews = () => {
-      this.props.onViewNews();
-  }
-
-
   render(): JSX.Element | null {
     return (
         <RX.View style={styles.container}>
           <RX.Button style={myStyles.styles.action_button} onPress={ this._onPressViewForcast }>                    
-              <RX.Text style={myStyles.styles.action_button_text}>
-                  Forcast
-              </RX.Text>
-          </RX.Button>
-          <RX.Button style={myStyles.styles.action_button} onPress={ this._onPressViewNews }>                    
               <RX.Text style={myStyles.styles.action_button_text}>
                   Forcast
               </RX.Text>

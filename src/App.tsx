@@ -52,10 +52,7 @@ class App extends RX.Component<{}, null> {
       case NavigationRouteId.OverView:
         return (
           <OverView
-            onNavigateBack={this._onPressBack}
             onViewForcast={this._onPressViewForcast}
-            onViewNews={this._onPressViewNews}
-
           />
         );
 
@@ -69,8 +66,8 @@ class App extends RX.Component<{}, null> {
 
       case NavigationRouteId.News:
         return (
-            <News onViewForcast={this._onPressBack} 
-             onViewOverview={this._onPressBackTwice}
+            <News 
+             onViewForcast={this._onPressBack} 
         />
         );
     }
@@ -112,10 +109,10 @@ class App extends RX.Component<{}, null> {
     this._navigator.pop();
   };
 
-    private _onPressBackTwice = () => {
+   /* private _onPressBackTwice = () => {
     this._navigator.pop();
     this._navigator.pop();
-  };
+  };*/
 }
 
 

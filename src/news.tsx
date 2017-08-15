@@ -33,7 +33,6 @@ const styles = {
 
 interface NewsProps {
   onViewForcast: () => void;
-  onViewOverview: () => void;
 }
 
 interface NewsState {
@@ -61,10 +60,10 @@ class News extends RX.Component<NewsProps, NewsState> {
     this.props.onViewForcast();
   };
 
-   private _onPressViewOverview = () => {
+  /* private _onPressViewOverview = () => {
     this.props.onViewOverview();
   }
-
+*/
   render(): JSX.Element | null {
     return (
       <RX.ScrollView style={styles.scroll}>
@@ -73,11 +72,6 @@ class News extends RX.Component<NewsProps, NewsState> {
           const newsDesc = obj.description.toString();
           return (
             <RX.View style={styles.container}>
-              <RX.Button onPress={ this._onPressViewOverview }>                    
-              <RX.Text>
-                  Overview
-              </RX.Text>
-          </RX.Button>
              <RX.Button onPress={ this._onPressViewForcast }>                    
               <RX.Text>
                   News
