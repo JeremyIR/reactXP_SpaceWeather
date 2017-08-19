@@ -1,4 +1,4 @@
-package com.rxphelloworld;
+package com.helloworld;
 
 import android.app.Application;
 

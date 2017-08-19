@@ -1,9 +1,8 @@
-import RX = require("reactxp");
-
-import Login = require("./login");
-import OverView = require("./overview");
-import Forcast = require("./forcast");
-import News = require("./news");
+import * as RX from "reactxp";
+import Login from "./login";
+import OverView from "./overview";
+import Forcast from "./forcast";
+import News from "./news";
 
 enum NavigationRouteId {
   Login,
@@ -116,4 +115,4 @@ class App extends RX.Component<{}, null> {
 }
 
 
-export = App;
+export default App;

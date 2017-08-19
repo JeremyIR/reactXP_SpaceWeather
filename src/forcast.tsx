@@ -1,4 +1,4 @@
-import RX = require("reactxp");
+import * as RX from "reactxp";
 import axios from "axios";
 import * as myStyles from "./styles";
 
@@ -70,16 +70,18 @@ private _onPressViewOverview = () => {
     return (
  
       <RX.ScrollView style={styles.scroll}>
-          <RX.Button onPress={ this._onPressViewOverview }>                    
-              <RX.Text>
+        <RX.View>
+          <RX.Button style={myStyles.styles.action_button} onPress={ this._onPressViewOverview }>                    
+              <RX.Text style={myStyles.styles.action_button_text}>
                   Overview
               </RX.Text>
           </RX.Button>
-             <RX.Button onPress={ this._onPressViewNews }>                    
-              <RX.Text>
+             <RX.Button style={myStyles.styles.action_button} onPress={ this._onPressViewNews }>                    
+              <RX.Text style={myStyles.styles.action_button_text}>
                   News
               </RX.Text>
           </RX.Button>
+          </RX.View>
         <RX.Text style={styles.docLink}>
           {this.state.image}
         </RX.Text>
@@ -88,4 +90,4 @@ private _onPressViewOverview = () => {
   }
 }
 
-export = Forcast;
+export default Forcast;

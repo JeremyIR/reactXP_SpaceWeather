@@ -1,4 +1,4 @@
-import RX = require("reactxp");
+import * as RX from "reactxp";
 import axios from "axios";
 import * as myStyles from "./styles";
 
@@ -82,4 +82,4 @@ class Overview extends RX.Component<OverViewProps, OverViewState> {
   }
 }
 
-export = Overview;
+export default Overview;

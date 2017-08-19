@@ -1,8 +1,6 @@
-// controllers/auth_controller.js
-
+const axios = require("axios");
 const jwt = require("jwt-simple");
 const User = require("../models/user");
-const axios = require("axios");
 const SECRET = require("../config").SECRET;
 
 function tokenForUser(user) {
@@ -65,3 +63,4 @@ exports.facebookAuth = function(req, res, next) {
       return next(error);
     });
 };
+

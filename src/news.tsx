@@ -1,4 +1,4 @@
-import RX = require("reactxp");
+import * as RX from "reactxp";
 import axios from "axios";
 import * as myStyles from "./styles";
 
@@ -67,16 +67,16 @@ class News extends RX.Component<NewsProps, NewsState> {
   render(): JSX.Element | null {
     return (
       <RX.ScrollView style={styles.scroll}>
+        <RX.Button style={myStyles.styles.action_button} onPress={ this._onPressViewForcast }>                    
+              <RX.Text style={myStyles.styles.action_button_text}>
+                  Forcast
+              </RX.Text>
+          </RX.Button>
         {this.state.xmlData.map((obj: any) => {
           const newsTitle = obj.title.toString();
           const newsDesc = obj.description.toString();
           return (
             <RX.View style={styles.container}>
-             <RX.Button onPress={ this._onPressViewForcast }>                    
-              <RX.Text>
-                  News
-              </RX.Text>
-          </RX.Button>
               <RX.View style={myStyles.styles.heading} key={obj.title}>
                 <RX.Link style={styles.docLink} url={obj.link}>
                   {newsTitle}
@@ -95,4 +95,4 @@ class News extends RX.Component<NewsProps, NewsState> {
   }
 }
 
-export = News;
+export default News;

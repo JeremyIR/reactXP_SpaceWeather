@@ -4,11 +4,11 @@
 
 import * as RX from "reactxp";
 import axios from "axios";
-import SyncTasks = require("synctasks");
+import * as SyncTasks from "synctasks";
 import { createIconStyle } from "./icon_base";
 import { FacebookIcon } from "./facebook";
 import { styles } from "./styles";
-import News = require("./news");
+import News from "./news";
 
 const newStyles = {
   container: RX.Styles.createViewStyle({
@@ -106,4 +106,4 @@ class Login extends RX.Component<LoginProps, LoginState> {
   }
 }
 
-export = Login;
+export default Login;
