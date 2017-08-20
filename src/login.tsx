@@ -5,8 +5,8 @@
 import * as RX from "reactxp";
 import axios from "axios";
 import * as SyncTasks from "synctasks";
-import { createIconStyle } from "./icon_base";
-import { FacebookIcon } from "./facebook";
+//import { createIconStyle } from "./icon_base";
+//import { FacebookIcon } from "./facebook";
 import { styles } from "./styles";
 import News from "./news";
 
@@ -58,15 +58,15 @@ class Login extends RX.Component<LoginProps, LoginState> {
     }
   }
 
-  public _facebookLogin() {
+  /*public _facebookLogin() {
     const url = ["https://graph.facebook.com/oauth/authorize", "?response_type=token", "&scope=email", "&client_id=" + "1597853887207086", "&redirect_uri=http://localhost:8000/"].join("")
     
     //Opens facebook URL in same tab
     window.open(url, "_self");
   }
-
+*/
   componentDidMount() {
-    const _handleURL = function(event: { url: string }) {
+    /*const _handleURL = function(event: { url: string }) {
       const location = window.location.href;
       const facebookToken = location.split("#")[1].split("=")[1].split("&")[0];
 
@@ -86,7 +86,7 @@ class Login extends RX.Component<LoginProps, LoginState> {
       .then(() => {
         this._onPressNavigate();
       });
-  }
+  }*/
 
   private _onPressNavigate = () => {
     this.props.onPressNavigate();
@@ -95,9 +95,8 @@ class Login extends RX.Component<LoginProps, LoginState> {
   render() {
     return (
       <RX.View style={newStyles.container}>
-        <RX.Button style={styles.facebook_button} onPress={this._facebookLogin}>
-          <FacebookIcon style={styles.facebook_icon} />
-          <RX.Text style={styles.facebook_button_text}>
+        <RX.Button onPress={this._onPressNavigate}>
+          <RX.Text>
             Continue with Facebook
           </RX.Text>
         </RX.Button>

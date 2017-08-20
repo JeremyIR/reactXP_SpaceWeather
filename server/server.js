@@ -18,7 +18,7 @@ const protectedAction = function(req, res) {
 mongoose.connect("mongodb://localhost:27017/test");
 
 router.route("/").get((req, res) => {
-  res.sendFile(path.join(__dirname, "./index.html"));
+  res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 router.route("/users").get((req, res) => {

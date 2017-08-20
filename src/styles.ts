@@ -1,6 +1,6 @@
 import * as RX from "reactxp";
 
-import { createIconStyle } from "./icon_base";
+//import { createIconStyle } from "./icon_base";
 
 // http://paletton.com/palette.php?uid=73H0w0krgXhf-YmlJXR-0VBRLKY
 const pallette = {
@@ -344,11 +344,11 @@ export const pageStyles = {
     paddingLeft: pageSizes.paddingLeft_listItem,
     paddingRight: pageSizes.paddingRight_listItem
   }),
-  listItem_icon: createIconStyle({
+  /*listItem_icon: createIconStyle({
     fillColor: pageColors.text_listItem,
     fontSize: pageSizes.icon_listItem,
     padding: 0
-  })
+  })*/
 };
 
 export const styles = {
@@ -483,11 +483,11 @@ export const styles = {
     paddingBottom: 0,
     flex: 1
   }),
-  searchIcon: createIconStyle({
+  /*searchIcon: createIconStyle({
     fontSize: sizes.icon_search,
     padding: 0,
     fillColor: colors.text_search
-  }),
+  })*/
 
   // Footer
   tabBar: RX.Styles.createViewStyle({
@@ -522,7 +522,7 @@ export const styles = {
     fontSize: sizes.font_button_tab,
     color: colors.text_tab_active
   }),
-  tabIcon: createIconStyle({
+  /* tabIcon: createIconStyle({
     fontSize: sizes.icon_button_tab,
     padding: 0,
     fillColor: colors.text_tab
@@ -531,7 +531,7 @@ export const styles = {
     fontSize: sizes.icon_button_tab,
     padding: 0,
     fillColor: colors.text_tab_active
-  }),
+  })*/
 
   // Page
   pageBackground: RX.Styles.createViewStyle({
@@ -580,11 +580,11 @@ export const styles = {
     fontSize: sizes.font_button,
     marginLeft: 8
   }),
-  facebook_icon: createIconStyle({
+  /*facebook_icon: createIconStyle({
     fontSize: sizes.icon_button,
     padding: 0,
     fillColor: "#FFFFFF"
-  }),
+  })*/
 
   warning_text: RX.Styles.createTextStyle({
     padding: sizes.padding_action_button,
@@ -593,11 +593,11 @@ export const styles = {
   }),
 
   // List
-  listIcon: createIconStyle({
+  /*listIcon: createIconStyle({
     fontSize: sizes.icon_list,
     padding: 0,
     fillColor: colors.icon_main
-  }),
+  })*/
 
   // Post - Wrapping
 
@@ -651,7 +651,7 @@ export const styles = {
     paddingRight: sizes.paddingRight_postIcon
   }),
 
-  postIcon: createIconStyle({
+  /* postIcon: createIconStyle({
     fontSize: sizes.icon_post,
     padding: 0,
     fillColor: colors.icon_post
@@ -667,7 +667,7 @@ export const styles = {
     padding: 0,
     fillColor: colors.icon_disabled
   }),
-
+*/
   postTitle_text: RX.Styles.createTextStyle({
     fontSize: sizes.font_post_title,
     color: colors.text_post_title
@@ -724,7 +724,7 @@ export const styles = {
     paddingTop: sizes.marginBottom_post_section
   }),
 
-  postStats_icon: createIconStyle({
+ /* postStats_icon: createIconStyle({
     fontSize: sizes.icon_stats,
     padding: 0,
     fillColor: colors.icon_disabled
@@ -732,7 +732,7 @@ export const styles = {
   postStats_text: RX.Styles.createTextStyle({
     fontSize: sizes.font_stats,
     padding: 0
-  }),
+  })*/
 
   // TEMP
   postImage_maxWidth: 375,

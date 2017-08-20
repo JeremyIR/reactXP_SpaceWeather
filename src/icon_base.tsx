@@ -1,4 +1,4 @@
-import * as RX from "reactxp";
+/*import * as RX from "reactxp";
 import ImageSvg, { SvgPath } from "reactxp-imagesvg";
 
 export interface IconStyle {
@@ -31,3 +31,4 @@ export const IconBase = (
     </ImageSvg>
   );
 };
+*/

@@ -52,9 +52,10 @@ class Forcast extends RX.Component<ForcastProps, ForcastState> {
   }
 
   componentDidMount() {
-    axios.get("/v1/forcast").then(res => {
+    axios.get("/v1/forcast")
+    .then(res => {
       this.setState({ image: res.data });
-    });
+    })
   }
 
 private _onPressViewOverview = () => {

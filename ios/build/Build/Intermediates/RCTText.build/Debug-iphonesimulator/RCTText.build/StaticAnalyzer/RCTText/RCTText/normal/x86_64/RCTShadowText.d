@@ -1,0 +1,34 @@
+dependencies: \
+  /Users/home/reactXP_helloWorld/node_modules/react-native/Libraries/Text/RCTShadowText.m \
+  /Users/home/reactXP_helloWorld/node_modules/react-native/Libraries/Text/RCTShadowText.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTShadowView.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAccessibilityManager.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFont.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUIManager.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTViewManager.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/home/reactXP_helloWorld/node_modules/react-native/Libraries/Text/RCTShadowRawText.h \
+  /Users/home/reactXP_helloWorld/node_modules/react-native/Libraries/Text/RCTText.h \
+  /Users/home/reactXP_helloWorld/node_modules/react-native/Libraries/Text/RCTTextView.h \
+  /Users/home/reactXP_helloWorld/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTView.h
